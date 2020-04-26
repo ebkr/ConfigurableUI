@@ -3,7 +3,7 @@ using BepInEx.Configuration;
 using UnityEngine;
 
 namespace ConfigurableUI.Configs {
-    public class GeneralHudConfiguration : IConfigurable {
+    public class PingConfiguration : IConfigurable {
         
         public static ConfigEntry<bool> ShowPings;
         public static ConfigEntry<bool> ShowPingHighlight;

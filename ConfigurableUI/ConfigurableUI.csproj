@@ -78,7 +78,6 @@
           <HintPath>F:\Steam\steamapps\common\Risk of Rain 2\r2modman\BepInEx\plugins\tristanmcpherson-R2API\R2API\R2API.dll</HintPath>
         </Reference>
         <Reference Include="System" />
-        <Reference Include="System.Core" />
         <Reference Include="System.Data" />
         <Reference Include="System.Xml" />
         <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -96,14 +95,17 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Configs\Configurations.cs" />
-        <Compile Include="Configs\GeneralHudConfiguration.cs" />
+        <Compile Include="Configs\PingConfiguration.cs" />
         <Compile Include="Configs\MonsterConfiguration.cs" />
         <Compile Include="Configs\PlayerConfiguration.cs" />
+        <Compile Include="ConfigurableUI\BaseHandler.cs" />
         <Compile Include="ConfigurableUI\Binder.cs" />
-        <Compile Include="ConfigurableUI\HandlerImpl\GeneralHudHandler.cs" />
-        <Compile Include="ConfigurableUI\HandlerImpl\MonsterHandler.cs" />
+        <Compile Include="ConfigurableUI\HandlerImpl\PingHandler.cs" />
+        <Compile Include="ConfigurableUI\HandlerImpl\MonsterBaseHandler.cs" />
         <Compile Include="ConfigurableUI\HandlerImpl\PlayerHandler.cs" />
+        <Compile Include="ConfigurableUI\Handlers\ICombatHealthBarViewerHandler.cs" />
         <Compile Include="ConfigurableUI\Handlers\IPingHandler.cs" />
+        <Compile Include="ConfigurableUI\Handlers\IStageHandler.cs" />
         <Compile Include="ConfigurableUI\Handlers\IStatsHandler.cs" />
         <Compile Include="ConfigurableUI\Handlers\IHudHandler.cs" />
         <Compile Include="ModMain.cs" />

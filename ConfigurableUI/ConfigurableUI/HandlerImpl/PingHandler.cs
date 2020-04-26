@@ -1,16 +1,15 @@
 ﻿using ConfigurableUI.Configs;
-using ConfigurableUI.ConfigurableUI.Handlers;
 using On.RoR2.UI;
-using R2API.Utils;
-using RoR2;
 using UnityEngine;
-using Console = System.Console;
-using Object = UnityEngine.Object;
 
 namespace ConfigurableUI.ConfigurableUI.HandlerImpl {
-    public class GeneralHudHandler : IPingHandler {
-        public void Update(PingIndicator.orig_Update orig, RoR2.UI.PingIndicator self) {
-            if (!GeneralHudConfiguration.ShowPings.Value) {
+    public class PingHandler : BaseHandler {
+        public override void RegisterSelfAsAction() {
+            PingIndicator.Update += Update;
+        }
+
+        public override void Update(PingIndicator.orig_Update orig, RoR2.UI.PingIndicator self) {
+            if (!PingConfiguration.ShowPings.Value) {
                 foreach (Transform transform in self.transform) {
                     transform.gameObject.SetActive(false);
                 }
@@ -28,7 +27,7 @@ namespace ConfigurableUI.ConfigurableUI.HandlerImpl {
                 }
             }
             
-            if (!GeneralHudConfiguration.ShowPingHighlight.Value) {
+            if (!PingConfiguration.ShowPingHighlight.Value) {
                 self.pingHighlight.enabled = false;
             }
             orig(self);
