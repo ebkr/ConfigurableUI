@@ -36,5 +36,13 @@ namespace ConfigurableUI.ConfigurableUI {
         public virtual void Awake(BuffDisplay.orig_Awake orig, RoR2.UI.BuffDisplay self) {
             throw new System.NotImplementedException();
         }
+
+        public virtual void Awake(TooltipController.orig_Awake orig, RoR2.UI.TooltipController self) {
+            throw new System.NotImplementedException();
+        }
+
+        public virtual void Update(GenericNotification.orig_Update orig, RoR2.UI.GenericNotification self) {
+            throw new System.NotImplementedException();
+        }
     }
 }

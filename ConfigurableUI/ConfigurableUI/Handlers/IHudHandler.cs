@@ -6,5 +6,9 @@
             RoR2.UI.HUDBossHealthBarController self);
 
         void Awake(On.RoR2.UI.BuffDisplay.orig_Awake orig, RoR2.UI.BuffDisplay self);
+
+        void Awake(On.RoR2.UI.TooltipController.orig_Awake orig, RoR2.UI.TooltipController self);
+        
+        void Update(On.RoR2.UI.GenericNotification.orig_Update orig, RoR2.UI.GenericNotification self);
     }
 }

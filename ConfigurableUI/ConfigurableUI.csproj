@@ -103,6 +103,7 @@
         <Compile Include="ConfigurableUI\HandlerImpl\PingHandler.cs" />
         <Compile Include="ConfigurableUI\HandlerImpl\MonsterBaseHandler.cs" />
         <Compile Include="ConfigurableUI\HandlerImpl\PlayerHandler.cs" />
+        <Compile Include="ConfigurableUI\Handlers\GenericPickupControllerHandler.cs" />
         <Compile Include="ConfigurableUI\Handlers\ICombatHealthBarViewerHandler.cs" />
         <Compile Include="ConfigurableUI\Handlers\IPingHandler.cs" />
         <Compile Include="ConfigurableUI\Handlers\IStageHandler.cs" />
