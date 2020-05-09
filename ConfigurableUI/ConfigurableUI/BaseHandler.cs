@@ -6,10 +6,14 @@ using UnityEngine;
 using CharacterBody = RoR2.CharacterBody;
 using CostHologramContent = On.RoR2.CostHologramContent;
 using RoR2Application = On.RoR2.RoR2Application;
+using ShrineBloodBehavior = On.RoR2.ShrineBloodBehavior;
+using ShrineBossBehavior = On.RoR2.ShrineBossBehavior;
+using ShrineChanceBehavior = On.RoR2.ShrineChanceBehavior;
+using ShrineCombatBehavior = On.RoR2.ShrineCombatBehavior;
 
 namespace ConfigurableUI.ConfigurableUI {
     public abstract class BaseHandler : IHudHandler, IPingHandler, IStatsHandler, ICombatHealthBarViewerHandler,
-        IStageHandler, ILeTaiHandler, ICrosshairManagerHandler {
+        IStageHandler, ILeTaiHandler, ICrosshairManagerHandler, IShrineHandler {
         public abstract void RegisterSelfAsAction();
 
         public virtual void Awake(HUD.orig_Awake orig, RoR2.UI.HUD self) {
@@ -83,6 +87,22 @@ namespace ConfigurableUI.ConfigurableUI {
             bool crit,
             TeamIndex teamIndex,
             DamageColorIndex damageColorIndex) {
+            throw new System.NotImplementedException();
+        }
+
+        public virtual void FixedUpdate(ShrineCombatBehavior.orig_FixedUpdate orig, RoR2.ShrineCombatBehavior self) {
+            throw new System.NotImplementedException();
+        }
+
+        public virtual void FixedUpdate(ShrineBloodBehavior.orig_FixedUpdate orig, RoR2.ShrineBloodBehavior self) {
+            throw new System.NotImplementedException();
+        }
+
+        public virtual void FixedUpdate(ShrineChanceBehavior.orig_FixedUpdate orig, RoR2.ShrineChanceBehavior self) {
+            throw new System.NotImplementedException();
+        }
+
+        public virtual void FixedUpdate(ShrineBossBehavior.orig_FixedUpdate orig, RoR2.ShrineBossBehavior self) {
             throw new System.NotImplementedException();
         }
     }
