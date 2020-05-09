@@ -1,5 +1,8 @@
 ﻿using ConfigurableUI.Configs;
 using On.RoR2.UI;
+using RoR2;
+using UnityEngine;
+using DamageNumberManager = On.RoR2.DamageNumberManager;
 
 namespace ConfigurableUI.ConfigurableUI.HandlerImpl {
     public class MonsterBaseHandler : BaseHandler {
@@ -7,6 +10,7 @@ namespace ConfigurableUI.ConfigurableUI.HandlerImpl {
         public override void RegisterSelfAsAction() {
             CombatHealthBarViewer.Update += Update;
             HUDBossHealthBarController.FixedUpdate += Update;
+            DamageNumberManager.SpawnDamageNumber += SpawnDamageNumber;
         }
 
         public override void Update(On.RoR2.UI.CombatHealthBarViewer.orig_Update orig, RoR2.UI.CombatHealthBarViewer self) {
@@ -23,5 +27,19 @@ namespace ConfigurableUI.ConfigurableUI.HandlerImpl {
             }
         }
         
+        public override void SpawnDamageNumber(On.RoR2.DamageNumberManager.orig_SpawnDamageNumber orig,
+            RoR2.DamageNumberManager self,
+            float amount,
+            Vector3 position,
+            bool crit,
+            TeamIndex teamIndex,
+            DamageColorIndex damageColorIndex) {
+            if (damageColorIndex != DamageColorIndex.Heal && damageColorIndex != DamageColorIndex.CritHeal) {
+                if (!MonsterConfiguration.ShowDamageNumbers.Value) {
+                    return;
+                }
+            }
+            orig(self, amount, position, crit, teamIndex, damageColorIndex);
+        }
     }
 }

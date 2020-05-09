@@ -1,12 +1,15 @@
 ﻿using ConfigurableUI.ConfigurableUI.Handlers;
 using On.LeTai.Asset.TranslucentImage;
-using On.RoR2;
 using On.RoR2.UI;
+using RoR2;
 using UnityEngine;
 using CharacterBody = RoR2.CharacterBody;
+using CostHologramContent = On.RoR2.CostHologramContent;
+using RoR2Application = On.RoR2.RoR2Application;
 
 namespace ConfigurableUI.ConfigurableUI {
-    public abstract class BaseHandler : IHudHandler, IPingHandler, IStatsHandler, ICombatHealthBarViewerHandler, IStageHandler, ILeTaiHandler, ICrosshairManagerHandler {
+    public abstract class BaseHandler : IHudHandler, IPingHandler, IStatsHandler, ICombatHealthBarViewerHandler,
+        IStageHandler, ILeTaiHandler, ICrosshairManagerHandler {
         public abstract void RegisterSelfAsAction();
 
         public virtual void Awake(HUD.orig_Awake orig, RoR2.UI.HUD self) {
@@ -29,7 +32,8 @@ namespace ConfigurableUI.ConfigurableUI {
             throw new System.NotImplementedException();
         }
 
-        public virtual void Update(HUDBossHealthBarController.orig_FixedUpdate orig, RoR2.UI.HUDBossHealthBarController self) {
+        public virtual void Update(HUDBossHealthBarController.orig_FixedUpdate orig,
+            RoR2.UI.HUDBossHealthBarController self) {
             throw new System.NotImplementedException();
         }
 
@@ -49,7 +53,8 @@ namespace ConfigurableUI.ConfigurableUI {
             throw new System.NotImplementedException();
         }
 
-        public virtual void Update(TranslucentImage.orig_Update orig, LeTai.Asset.TranslucentImage.TranslucentImage self) {
+        public virtual void Update(TranslucentImage.orig_Update orig,
+            LeTai.Asset.TranslucentImage.TranslucentImage self) {
             throw new System.NotImplementedException();
         }
 
@@ -61,8 +66,23 @@ namespace ConfigurableUI.ConfigurableUI {
             throw new System.NotImplementedException();
         }
 
-        public virtual void UpdateCrosshair(CrosshairManager.orig_UpdateCrosshair orig, RoR2.UI.CrosshairManager self, CharacterBody targetBody, Vector3 crosshairWorldPosition,
+        public virtual void UpdateCrosshair(CrosshairManager.orig_UpdateCrosshair orig, RoR2.UI.CrosshairManager self,
+            CharacterBody targetBody, Vector3 crosshairWorldPosition,
             Camera uiCamera) {
+            throw new System.NotImplementedException();
+        }
+
+        public virtual void FixedUpdate(CostHologramContent.orig_FixedUpdate orig, RoR2.CostHologramContent self) {
+            throw new System.NotImplementedException();
+        }
+
+        public virtual void SpawnDamageNumber(On.RoR2.DamageNumberManager.orig_SpawnDamageNumber orig,
+            RoR2.DamageNumberManager self,
+            float amount,
+            Vector3 position,
+            bool crit,
+            TeamIndex teamIndex,
+            DamageColorIndex damageColorIndex) {
             throw new System.NotImplementedException();
         }
     }

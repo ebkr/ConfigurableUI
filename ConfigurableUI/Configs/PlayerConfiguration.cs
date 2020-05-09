@@ -13,6 +13,8 @@ namespace ConfigurableUI.Configs {
         public static ConfigEntry<bool> ShowBuffs;
         public static ConfigEntry<bool> ShowInteractionPrompt;
         public static ConfigEntry<bool> ShowItemTooltip;
+        public static ConfigEntry<bool> ShowCosts;
+        public static ConfigEntry<bool> ShowHealNumbers;
         
         public void Register(ConfigFile configFile) {
             const String section = "Player";
@@ -46,6 +48,13 @@ namespace ConfigurableUI.Configs {
                 new ConfigDescription(
                     "Allows you to show/hide the buff display.",
                     new AcceptableValueList<bool>(true, false)));
+            ShowCosts = configFile.Bind(new ConfigDefinition(section, "Show purchase costs"), true,
+                new ConfigDescription(
+                    "Allows you to show/hide the price overlay.",
+                    new AcceptableValueList<bool>(true, false)));
+            ShowHealNumbers = configFile.Bind(new ConfigDefinition(section, "Show heal numbers"), true, new ConfigDescription(
+                "Show the heal indicators.",
+                new AcceptableValueList<bool>(true, false)));
         }
     }
 }

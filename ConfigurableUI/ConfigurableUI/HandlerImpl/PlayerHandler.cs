@@ -1,7 +1,11 @@
 ﻿using ConfigurableUI.Configs;
 using ConfigurableUI.ConfigurableUI.Utils;
 using On.RoR2.UI;
+using RoR2;
+using UnityEngine;
 using UnityEngine.UI;
+using CostHologramContent = On.RoR2.CostHologramContent;
+using DamageNumberManager = On.RoR2.DamageNumberManager;
 
 namespace ConfigurableUI.ConfigurableUI.HandlerImpl {
     public class PlayerHandler : BaseHandler {
@@ -11,6 +15,8 @@ namespace ConfigurableUI.ConfigurableUI.HandlerImpl {
             StageCountDisplay.Update += Update;
             TooltipController.LateUpdate += LateUpdate;
             GenericNotification.Update += Update;
+            CostHologramContent.FixedUpdate += FixedUpdate;
+            DamageNumberManager.SpawnDamageNumber += SpawnDamageNumber;
         }
 
         public override void Awake(HUD.orig_Awake orig, RoR2.UI.HUD self) {
@@ -35,15 +41,9 @@ namespace ConfigurableUI.ConfigurableUI.HandlerImpl {
             RoR2.UI.BuffDisplay buffDisplay = buffRoot.GetComponent<RoR2.UI.BuffDisplay>();
             buffDisplay.gameObject.SetActive(PlayerConfiguration.ShowBuffs.Value);
             
-            // self.healthBar.transform.parent.gameObject.SetActive(PlayerConfiguration.ShowPlayerStats.Value);
             self.itemInventoryDisplay.gameObject.SetActive(PlayerConfiguration.ShowItems.Value);
             self.objectivePanelController.gameObject.SetActive(PlayerConfiguration.ShowObjectives.Value);
             self.lunarCoinContainer.transform.parent.gameObject.SetActive(PlayerConfiguration.ShowMoney.Value);
-
-            // self.mainUIPanel.SetActive(false);
-            // self.cinematicPanel.SetActive(false);
-            // self.mainContainer.SetActive(false);
-            // self.contextManager.contextDisplay.SetActive(false);
 
             if (!PlayerConfiguration.ShowSkills.Value) {
                 for (int i = 0; i < self.skillIcons.Length; i++) {
@@ -81,6 +81,29 @@ namespace ConfigurableUI.ConfigurableUI.HandlerImpl {
                 color.b = (float) HoverConfiguration.PickupBackgroundBlue.Value / 255;
                 self.transform.GetChild(0).GetComponent<Image>().color = color;
             }
+        }
+
+        public override void FixedUpdate(CostHologramContent.orig_FixedUpdate orig, RoR2.CostHologramContent self) {
+            if (!PlayerConfiguration.ShowCosts.Value) {
+                self.costType = CostTypeIndex.None;
+                self.enabled = false;
+                orig(self);
+            }
+        }
+
+        public override void SpawnDamageNumber(DamageNumberManager.orig_SpawnDamageNumber orig,
+            RoR2.DamageNumberManager self,
+            float amount,
+            Vector3 position,
+            bool crit,
+            TeamIndex teamIndex,
+            DamageColorIndex damageColorIndex) {
+            if (damageColorIndex == DamageColorIndex.Heal || damageColorIndex == DamageColorIndex.CritHeal) {
+                if (!PlayerConfiguration.ShowHealNumbers.Value) {
+                    return;
+                }
+            }
+            orig(self, amount, position, crit, teamIndex, damageColorIndex);
         }
     }
 }
