@@ -94,21 +94,27 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Configs\CharacterConfiguration.cs" />
         <Compile Include="Configs\Configurations.cs" />
+        <Compile Include="Configs\HoverConfiguration.cs" />
         <Compile Include="Configs\PingConfiguration.cs" />
         <Compile Include="Configs\MonsterConfiguration.cs" />
         <Compile Include="Configs\PlayerConfiguration.cs" />
         <Compile Include="ConfigurableUI\BaseHandler.cs" />
         <Compile Include="ConfigurableUI\Binder.cs" />
+        <Compile Include="ConfigurableUI\HandlerImpl\CrosshairHandler.cs" />
         <Compile Include="ConfigurableUI\HandlerImpl\PingHandler.cs" />
         <Compile Include="ConfigurableUI\HandlerImpl\MonsterBaseHandler.cs" />
         <Compile Include="ConfigurableUI\HandlerImpl\PlayerHandler.cs" />
-        <Compile Include="ConfigurableUI\Handlers\GenericPickupControllerHandler.cs" />
+        <Compile Include="ConfigurableUI\Handlers\ICrosshairManagerHandler.cs" />
         <Compile Include="ConfigurableUI\Handlers\ICombatHealthBarViewerHandler.cs" />
         <Compile Include="ConfigurableUI\Handlers\IPingHandler.cs" />
         <Compile Include="ConfigurableUI\Handlers\IStageHandler.cs" />
         <Compile Include="ConfigurableUI\Handlers\IStatsHandler.cs" />
         <Compile Include="ConfigurableUI\Handlers\IHudHandler.cs" />
+        <Compile Include="ConfigurableUI\Handlers\ILeTaiHandler.cs" />
+        <Compile Include="ConfigurableUI\Utils\DebugUtils.cs" />
+        <Compile Include="ConfigurableUI\Utils\TransformUtils.cs" />
         <Compile Include="ModMain.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>

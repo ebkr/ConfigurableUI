@@ -22,5 +22,6 @@ namespace ConfigurableUI.ConfigurableUI.HandlerImpl {
                 self.gameObject.SetActive(false);
             }
         }
+        
     }
 }

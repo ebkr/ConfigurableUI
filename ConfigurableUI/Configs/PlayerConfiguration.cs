@@ -12,7 +12,7 @@ namespace ConfigurableUI.Configs {
         public static ConfigEntry<bool> ShowStageInformation;
         public static ConfigEntry<bool> ShowBuffs;
         public static ConfigEntry<bool> ShowInteractionPrompt;
-        public static ConfigEntry<int> PickupOpacity;
+        public static ConfigEntry<bool> ShowItemTooltip;
         
         public void Register(ConfigFile configFile) {
             const String section = "Player";
@@ -34,12 +34,18 @@ namespace ConfigurableUI.Configs {
             ShowStageInformation = configFile.Bind(new ConfigDefinition(section, "Show stage information"), true, new ConfigDescription(
                 "Allows you to show/hide the stage information panel containing the total time.",
                 new AcceptableValueList<bool>(true, false)));
-            ShowInteractionPrompt = configFile.Bind(new ConfigDefinition(section, "Show interaction prompt"), true, new ConfigDescription(
-                "Allows you to show/hide the interaction prompt.",
-                new AcceptableValueList<bool>(true, false)));
-            PickupOpacity = configFile.Bind(new ConfigDefinition(section, "Configure pickup transparency"), 50, new ConfigDescription(
-                "Allows you to toggle the opacity of the pickup description overlay.",
-                new AcceptableValueRange<int>(0, 100)));
+            ShowInteractionPrompt = configFile.Bind(new ConfigDefinition(section, "Show interaction prompt"), true,
+                new ConfigDescription(
+                    "Allows you to show/hide the interaction prompt.",
+                    new AcceptableValueList<bool>(true, false)));
+            ShowItemTooltip = configFile.Bind(new ConfigDefinition(section, "Show item tooltip"), true,
+                new ConfigDescription(
+                    "Allows you to show/hide the item tooltip on hover when looking at the player list.",
+                    new AcceptableValueList<bool>(true, false)));
+            ShowBuffs = configFile.Bind(new ConfigDefinition(section, "Show buffs"), true,
+                new ConfigDescription(
+                    "Allows you to show/hide the buff display.",
+                    new AcceptableValueList<bool>(true, false)));
         }
     }
 }
