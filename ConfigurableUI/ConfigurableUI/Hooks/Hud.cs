@@ -1,25 +1,14 @@
 ﻿using ConfigurableUI.Configs;
+using ConfigurableUI.ConfigurableUI.Attributes;
 using ConfigurableUI.ConfigurableUI.Utils;
 using On.RoR2.UI;
-using RoR2;
-using UnityEngine;
 using UnityEngine.UI;
-using CostHologramContent = On.RoR2.CostHologramContent;
-using DamageNumberManager = On.RoR2.DamageNumberManager;
 
-namespace ConfigurableUI.ConfigurableUI.HandlerImpl {
-    public class PlayerHandler : BaseHandler {
-
-        public override void RegisterSelfAsAction() {
-            HUD.Awake += Awake;
-            StageCountDisplay.Update += Update;
-            TooltipController.LateUpdate += LateUpdate;
-            GenericNotification.Update += Update;
-            CostHologramContent.FixedUpdate += FixedUpdate;
-            DamageNumberManager.SpawnDamageNumber += SpawnDamageNumber;
-        }
-
-        public override void Awake(HUD.orig_Awake orig, RoR2.UI.HUD self) {
+namespace ConfigurableUI.ConfigurableUI.Hooks {
+    public class Hud {
+        
+        [ApiHook(typeof(HUD), "Awake")]
+        public static void HudVisibility(HUD.orig_Awake orig, RoR2.UI.HUD self) {
             orig(self);
 
             var parent = self.healthBar.transform.parent;
@@ -52,24 +41,28 @@ namespace ConfigurableUI.ConfigurableUI.HandlerImpl {
             }
         }
 
-        public override void Update(HUD.orig_Update orig, RoR2.UI.HUD self) {
+        [ApiHook(typeof(HUD), "Update")]
+        public static void HudUpdate(HUD.orig_Update orig, RoR2.UI.HUD self) {
             orig(self);
             if (self.buffDisplay) {
                 self.buffDisplay.gameObject.SetActive(PlayerConfiguration.ShowBuffs.Value);
             }
         }
 
-        public override void Update(StageCountDisplay.orig_Update orig, RoR2.UI.StageCountDisplay self) {
+        [ApiHook(typeof(StageCountDisplay), "Update")]
+        public static void ShowStageInformation(StageCountDisplay.orig_Update orig, RoR2.UI.StageCountDisplay self) {
             orig(self);
             self.transform.parent.gameObject.SetActive(PlayerConfiguration.ShowStageInformation.Value);
         }
 
-        public override void LateUpdate(TooltipController.orig_LateUpdate orig, RoR2.UI.TooltipController self) {
+        [ApiHook(typeof(TooltipController), "LateUpdate")]
+        public static void ShowItemTooltip(TooltipController.orig_LateUpdate orig, RoR2.UI.TooltipController self) {
             orig(self);
             self.gameObject.SetActive(PlayerConfiguration.ShowItemTooltip.Value);
         }
 
-        public override void Update(GenericNotification.orig_Update orig, RoR2.UI.GenericNotification self) {
+        [ApiHook(typeof(GenericNotification), "Update")]
+        public static void ItemPickupTooltipHandler(GenericNotification.orig_Update orig, RoR2.UI.GenericNotification self) {
             orig(self);
             self.gameObject.SetActive(HoverConfiguration.ShowPickup.Value);
             if (self.transform.GetChild(0)) {
@@ -81,29 +74,6 @@ namespace ConfigurableUI.ConfigurableUI.HandlerImpl {
                 color.b = (float) HoverConfiguration.PickupBackgroundBlue.Value / 255;
                 self.transform.GetChild(0).GetComponent<Image>().color = color;
             }
-        }
-
-        public override void FixedUpdate(CostHologramContent.orig_FixedUpdate orig, RoR2.CostHologramContent self) {
-            if (!PlayerConfiguration.ShowCosts.Value) {
-                self.costType = CostTypeIndex.None;
-                self.enabled = false;
-                orig(self);
-            }
-        }
-
-        public override void SpawnDamageNumber(DamageNumberManager.orig_SpawnDamageNumber orig,
-            RoR2.DamageNumberManager self,
-            float amount,
-            Vector3 position,
-            bool crit,
-            TeamIndex teamIndex,
-            DamageColorIndex damageColorIndex) {
-            if (damageColorIndex == DamageColorIndex.Heal || damageColorIndex == DamageColorIndex.CritHeal) {
-                if (!PlayerConfiguration.ShowHealNumbers.Value) {
-                    return;
-                }
-            }
-            orig(self, amount, position, crit, teamIndex, damageColorIndex);
         }
     }
 }
