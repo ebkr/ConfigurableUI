@@ -101,6 +101,7 @@
         <Compile Include="Configs\MonsterConfiguration.cs" />
         <Compile Include="Configs\PlayerConfiguration.cs" />
         <Compile Include="ConfigurableUI\Attributes\ApiHook.cs" />
+        <Compile Include="ConfigurableUI\Attributes\IgnoreHook.cs" />
         <Compile Include="ConfigurableUI\Binder.cs" />
         <Compile Include="ConfigurableUI\Hooks\Crosshair.cs" />
         <Compile Include="ConfigurableUI\Hooks\CurrencyDisplay.cs" />

@@ -1,6 +1,5 @@
 ﻿using System;
 using BepInEx.Configuration;
-using UnityEngine;
 
 namespace ConfigurableUI.Configs {
     public class PingConfiguration : IConfigurable {

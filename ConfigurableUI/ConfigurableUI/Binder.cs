@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Linq;
-using System.Linq.Expressions;
 using BepInEx.Logging;
 using ConfigurableUI.ConfigurableUI.Attributes;
-using MonoMod.Utils;
 
 namespace ConfigurableUI.ConfigurableUI {
     public static class Binder {
@@ -16,9 +14,9 @@ namespace ConfigurableUI.ConfigurableUI {
                 .SelectMany(assembly => assembly.GetTypes())
                 .SelectMany(type => type.GetMethods())
                 .Where(info => info.GetCustomAttributes(typeof(ApiHook), false).Length > 0)
+                .Where(info => info.GetCustomAttributes(typeof(IgnoreHook), false).Length.Equals(0))
                 .ToArray();
             foreach (var methodInfo in methods) {
-                Console.WriteLine($"Binding {methodInfo}");
                 foreach (ApiHook customAttribute in methodInfo.GetCustomAttributes(typeof(ApiHook), false)) {
                     var hookEvent = customAttribute.HookOrigin.GetEvent(customAttribute.HookedEventName);
                     var delegatedMethod = Delegate.CreateDelegate(hookEvent.EventHandlerType, methodInfo);

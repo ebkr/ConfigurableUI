@@ -4,7 +4,6 @@ using ConfigurableUI.ConfigurableUI.Attributes;
 using On.RoR2.UI;
 using RoR2;
 using UnityEngine;
-using Console = System.Console;
 
 namespace ConfigurableUI.ConfigurableUI.Hooks {
     public class Crosshair {
