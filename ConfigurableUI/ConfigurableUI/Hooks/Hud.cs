@@ -13,12 +13,12 @@ namespace ConfigurableUI.ConfigurableUI.Hooks {
         
             var parent = self.healthBar.transform.parent;
         
-            var levelDisplayCluster = TransformUtils.findChild(parent, "LevelDisplayCluster");
-            var buffRoot = TransformUtils.findChild(levelDisplayCluster, "BuffDisplayRoot");
-            var levelRoot = TransformUtils.findChild(levelDisplayCluster, "LevelDisplayRoot");
-            var expBarRoot = TransformUtils.findChild(levelDisplayCluster, "ExpBarRoot");
+            var levelDisplayCluster = TransformUtils.FindChild(parent, "LevelDisplayCluster");
+            var buffRoot = TransformUtils.FindChild(levelDisplayCluster, "BuffDisplayRoot");
+            var levelRoot = TransformUtils.FindChild(levelDisplayCluster, "LevelDisplayRoot");
+            var expBarRoot = TransformUtils.FindChild(levelDisplayCluster, "ExpBarRoot");
             
-            var healthBarRoot = TransformUtils.findChild(parent, "HealthbarRoot");
+            var healthBarRoot = TransformUtils.FindChild(parent, "HealthbarRoot");
         
             if (!PlayerConfiguration.ShowPlayerStats.Value) {
                 parent.GetComponent<Image>().enabled = false;

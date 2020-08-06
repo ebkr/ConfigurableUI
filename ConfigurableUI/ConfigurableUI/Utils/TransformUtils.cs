@@ -2,10 +2,10 @@
 using UnityEngine;
 
 namespace ConfigurableUI.ConfigurableUI.Utils {
-    public class TransformUtils {
+    public static class TransformUtils {
 
-        public static Transform findChild(Transform transform, String transformName) {
-            for (int i = 0; i < transform.childCount; i++) {
+        public static Transform FindChild(Transform transform, String transformName) {
+            for (var i = 0; i < transform.childCount; i++) {
                 if (transform.GetChild(i).name.Equals(transformName)) {
                     return transform.GetChild(i);
                 }
