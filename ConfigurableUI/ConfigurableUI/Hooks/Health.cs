@@ -11,18 +11,14 @@ namespace ConfigurableUI.ConfigurableUI.Hooks {
         public static void MonsterHealthOverlay(CombatHealthBarViewer.orig_Update orig,
             RoR2.UI.CombatHealthBarViewer self) {
             orig(self);
-            if (!MonsterConfiguration.ShowHealthOverlay.Value) {
-                self.enabled = false;
-            }
+            self.enabled = MonsterConfiguration.ShowHealthOverlay.Value;
         }
 
         [ApiHook(typeof(HUDBossHealthBarController), "FixedUpdate")]
         public static void ShowBossHealthBar(On.RoR2.UI.HUDBossHealthBarController.orig_FixedUpdate orig,
             RoR2.UI.HUDBossHealthBarController self) {
             orig(self);
-            if (!MonsterConfiguration.ShowBossHealthBar.Value) {
-                self.gameObject.SetActive(false);
-            }
+            self.gameObject.SetActive(MonsterConfiguration.ShowBossHealthBar.Value);
         }
 
         [ApiHook(typeof(DamageNumberManager), "SpawnDamageNumber")]

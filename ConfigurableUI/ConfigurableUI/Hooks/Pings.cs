@@ -34,10 +34,7 @@ namespace ConfigurableUI.ConfigurableUI.Hooks {
 
         [ApiHook(typeof(PingIndicator), "Update")]
         public static void ShowPingHighlights(PingIndicator.orig_Update orig, RoR2.UI.PingIndicator self) {
-            if (!PingConfiguration.ShowPingHighlight.Value) {
-                self.pingHighlight.enabled = false;
-            }
-
+            self.pingHighlight.enabled = PingConfiguration.ShowPingHighlight.Value;
             orig(self);
         }
     }
